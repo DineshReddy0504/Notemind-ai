@@ -3,6 +3,7 @@
 A small full-stack notes app with AI-powered semantic search and a "chat with
 your notes" feature. Built as a weekend project to touch every layer of the
 stack: frontend, backend, database, AI integration, containerization, and CI/CD.
+Setup In Progress
 
 ## Architecture
 
