@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: notemind
+      POSTGRES_PASSWORD: notemind
+      POSTGRES_DB: notemind
+    ports:
+      - "5432:5432"
+    volumes:
+      - notemind_db_data:/var/lib/postgresql/data
+
+  server:
+    build:
+      context: ./server
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./server/.env
+    environment:
+      DATABASE_URL: postgresql://notemind:notemind@db:5432/notemind
+    depends_on:
+      - db
+
+volumes:
+  notemind_db_data:

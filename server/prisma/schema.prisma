@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// The `embedding` column is managed via raw SQL (see migration.sql) because
+// Prisma doesn't have first-class support for pgvector's `vector` type yet.
+// We mark it `Unsupported` so Prisma knows the column exists but leaves it
+// alone — all reads/writes to it go through $queryRaw / $executeRaw.
+model Note {
+  id        String   @id @default(uuid())
+  title     String
+  content   String
+  embedding Unsupported("vector(1536)")?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
