@@ -8,7 +8,7 @@ A full-stack AI-powered notes app with semantic search and a RAG-based chat feat
 
 ## Screenshot
 
-![NoteMind AI](./screenshot.png)
+![NoteMind AI](./Screenshots/Screenshot.png)
 
 ## What it does
 
